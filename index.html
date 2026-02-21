@@ -1,49 +1,133 @@
-<!DOCTYPE html>
-<html lang="en" data-theme="nord">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!doctype html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Assignment-04</title>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <!-- <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" /> -->
     <!-- google font -->
-     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- font awesome cdn -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
 
     <style>
-        *{
-            font-family: "Geist", sans-serif;
-        }
+      * {
+        font-family: "Geist", sans-serif;
+      }
     </style>
-</head>
-<body>
-    <main class="max-w-[1110px] mx-auto">
-        <header>
-            <h1 class="text-[32px] font-bold mt-[60px]">Job Application Tracker</h1>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-5">
-            <div class="bg-white p-5 space-y-2 rounded-lg">
-                <h4 class="text-[#323B49] font-medium">Total</h4>
-                <p class="text-[#002C5C] text-2xl font-bold">0</p>
-            </div>
-            <div class="bg-white p-5 space-y-2 rounded-lg">
-                <h4 class="text-[#323B49] font-medium">Interview</h4>
-                <p class="text-green-400 text-2xl font-bold">0</p>
-            </div>
-            <div class="bg-white p-5 space-y-2 rounded-lg">
-                <h4 class="text-[#323B49] font-medium">Rejected</h4>
-                <p class="text-red-400 text-2xl font-bold">0</p>
-            </div>
-            </div>
-            <hr class="my-7 text-[#E6E7E9]">
-        </header>
+  </head>
+  <body class="bg-[#F8FAFC] min-h-screen">
+    <main class="w-10/12 mx-auto">
+      <header>
+        <h1 class="text-[32px] font-bold pt-[60px]">Job Application Tracker</h1>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
+          <div class="bg-white p-5 space-y-2 rounded-lg">
+            <h4 class="text-[#949eaf] font-medium">Total</h4>
+            <p class="text-[#002C5C] text-2xl font-bold">0</p>
+          </div>
+          <div class="bg-white p-5 space-y-2 rounded-lg">
+            <h4 class="text-[#323B49] font-medium">Interview</h4>
+            <p class="text-green-400 text-2xl font-bold">0</p>
+          </div>
+          <div class="bg-white p-5 space-y-2 rounded-lg">
+            <h4 class="text-[#323B49] font-medium">Rejected</h4>
+            <p class="text-red-400 text-2xl font-bold">0</p>
+          </div>
+        </div>
+        <hr class="my-7 text-[#E6E7E9]" />
+      </header>
 
+      <!-- Available Jobs -->
+      <section>
+        <div class="flex justify-between">
+          <h3 class="font-semibold text-[20px] text-[#002C5C] mb-6">
+            Available Jobs
+          </h3>
+          <p>0 jobs</p>
+        </div>
+        <div class="space-x-2 mb-4 ">
+          <button class="btn btn-active bg-[#3B82F6]">All</button>
+          <button class="btn btn-active bg-white border-none">Interview</button>
+          <button class="btn btn-active bg-white border-none">Rejected</button>
+        </div>
+
+        <!-- job card section -->
+         <!-- card 1 -->
+    <div class="space-y-4">
+        <div class="card bg-base-100 w-full p-6 shadow-sm  ">
+            <h4 class="text-[18px] font-bold text-[#002C5C]">Mobile First Corp</h4>
+            <p class="text-[#64748B]">React Native Developer</p>
+            <span class="text-[#64748B] py-4">Remote • Full-time • $130,000 - $175,000</span>
+            <span class=" bg-[#EEF4FF] text-[#002C5C] px-3 py-2 w-[113px] rounded-md mb-2">Not Applied</span>
+            <p class="text-[#323B49] mb-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+           <div class="space-x-2"> 
+            <button class="btn btn-outline btn-success">interview</button>
+            <button class="btn btn-outline btn-error">Rejected</button>
+           </div>
+           <button class="btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+        <!-- card 02  -->
+        <div class="card bg-base-100 w-full p-6 shadow-sm  ">
+            <h4 class="text-[18px] font-bold text-[#002C5C]">Mobile First Corp</h4>
+            <p class="text-[#64748B]">React Native Developer</p>
+            <span class="text-[#64748B] py-4">Remote • Full-time • $130,000 - $175,000</span>
+            <span class=" bg-[#EEF4FF] text-[#002C5C] px-3 py-2 w-[113px] rounded-md mb-2">Not Applied</span>
+            <p class="text-[#323B49] mb-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+           <div class="space-x-2"> 
+            <button class="btn btn-outline btn-success">interview</button>
+            <button class="btn btn-outline btn-error">Rejected</button>
+           </div>
+           <button class="btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+        <!-- card 03 -->
+        <div class="card bg-base-100 w-full p-6 shadow-sm  ">
+            <h4 class="text-[18px] font-bold text-[#002C5C]">Mobile First Corp</h4>
+            <p class="text-[#64748B]">React Native Developer</p>
+            <span class="text-[#64748B] py-4">Remote • Full-time • $130,000 - $175,000</span>
+            <span class=" bg-[#EEF4FF] text-[#002C5C] px-3 py-2 w-[113px] rounded-md mb-2">Not Applied</span>
+            <p class="text-[#323B49] mb-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+           <div class="space-x-2"> 
+            <button class="btn btn-outline btn-success">interview</button>
+            <button class="btn btn-outline btn-error">Rejected</button>
+           </div>
+           <button class="btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+        <!-- card 04 -->
+        <div class="card bg-base-100 w-full p-6 shadow-sm  ">
+            <h4 class="text-[18px] font-bold text-[#002C5C]">Mobile First Corp</h4>
+            <p class="text-[#64748B]">React Native Developer</p>
+            <span class="text-[#64748B] py-4">Remote • Full-time • $130,000 - $175,000</span>
+            <span class=" bg-[#EEF4FF] text-[#002C5C] px-3 py-2 w-[113px] rounded-md mb-2">Not Applied</span>
+            <p class="text-[#323B49] mb-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+           <div class="space-x-2"> 
+            <button class="btn btn-outline btn-success">interview</button>
+            <button class="btn btn-outline btn-error">Rejected</button>
+           </div>
+           <button class="btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
+        </div>
+    </div>
+        
+      </section>
     </main>
-    
-    
-
 
     <script src="./script.js"></script>
-</body>
+  </body>
 </html>
