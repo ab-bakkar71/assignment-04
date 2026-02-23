@@ -41,92 +41,114 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
           <div class="bg-white p-5 space-y-2 rounded-lg">
             <h4 class="text-[#949eaf] font-medium">Total</h4>
-            <p class="text-[#002C5C] text-2xl font-bold">0</p>
+            <p id="total" class="text-[#002C5C] text-2xl font-bold">0</p>
           </div>
           <div class="bg-white p-5 space-y-2 rounded-lg">
             <h4 class="text-[#323B49] font-medium">Interview</h4>
-            <p class="text-green-400 text-2xl font-bold">0</p>
+            <p id="interview" class="text-green-400 text-2xl font-bold">0</p>
           </div>
           <div class="bg-white p-5 space-y-2 rounded-lg">
             <h4 class="text-[#323B49] font-medium">Rejected</h4>
-            <p class="text-red-400 text-2xl font-bold">0</p>
+            <p id="rejected" class="text-red-400 text-2xl font-bold">0</p>
           </div>
         </div>
         <hr class="my-7 text-[#E6E7E9]" />
       </header>
 
       <!-- Available Jobs -->
-      <section>
+      <section id="main-section">
         <div class="flex justify-between">
           <h3 class="font-semibold text-[20px] text-[#002C5C] mb-6">
             Available Jobs
           </h3>
-          <p>0 jobs</p>
+          <p><span id="total-job">0</span> jobs</p>
         </div>
         <div class="space-x-2 mb-4 ">
-          <button class="btn btn-active bg-[#3B82F6]">All</button>
-          <button class="btn btn-active bg-white border-none">Interview</button>
-          <button class="btn btn-active bg-white border-none">Rejected</button>
+          <button onclick="toggleBtn('filter-btn-all')" id="filter-btn-all" class="btn  bg-[#3B82F6] border-none">All</button>
+          <button onclick="toggleBtn('filter-btn-interview')"   id="filter-btn-interview" class="btn bg-white border-none">Interview</button>
+          <button onclick="toggleBtn('filter-btn-rejected')"  id="filter-btn-rejected" class="btn  bg-white border-none">Rejected</button>
         </div>
 
         <!-- job card section -->
          <!-- card 1 -->
-    <div class="space-y-4">
+    <div id="all-card" class="space-y-4">
         <div class="card bg-base-100 w-full p-6 shadow-sm  ">
-            <h4 class="text-[18px] font-bold text-[#002C5C]">Mobile First Corp</h4>
-            <p class="text-[#64748B]">React Native Developer</p>
-            <span class="text-[#64748B] py-4">Remote • Full-time • $130,000 - $175,000</span>
-            <span class=" bg-[#EEF4FF] text-[#002C5C] px-3 py-2 w-[113px] rounded-md mb-2">Not Applied</span>
-            <p class="text-[#323B49] mb-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            <h4 class="job-name text-[18px] font-bold text-[#002C5C]">Mobile First Corp</h4>
+            <p class="job-name-dsc text-[#64748B]">React Native Developer</p>
+            <span class="job-location text-[#64748B] py-4">Remote • Full-time • $130,000 - $175,000</span>
+            <span class="job-status bg-[#EEF4FF] text-[#002C5C] font-bold px-3 py-2 w-[120px] rounded-md mb-2">Not Applied</span>
+            <p class="job-dsc text-[#323B49] mb-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
            <div class="space-x-2"> 
-            <button class="btn btn-outline btn-success">interview</button>
-            <button class="btn btn-outline btn-error">Rejected</button>
+            <button class="interview-btn btn btn-outline btn-success">interview</button>
+            <button class="reject-btn btn btn-outline btn-error">Rejected</button>
            </div>
            <button class="btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
         </div>
+
+
         <!-- card 02  -->
         <div class="card bg-base-100 w-full p-6 shadow-sm  ">
-            <h4 class="text-[18px] font-bold text-[#002C5C]">Mobile First Corp</h4>
-            <p class="text-[#64748B]">React Native Developer</p>
-            <span class="text-[#64748B] py-4">Remote • Full-time • $130,000 - $175,000</span>
-            <span class=" bg-[#EEF4FF] text-[#002C5C] px-3 py-2 w-[113px] rounded-md mb-2">Not Applied</span>
-            <p class="text-[#323B49] mb-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            <h4 class="job-name text-[18px] font-bold text-[#002C5C]">WebFlow Agency</h4>
+            <p class="job-name-dsc text-[#64748B]">Web Designer & Developer</p>
+            <span class="job-location text-[#64748B] py-4">Los Angeles, CA • Part-time • $80,000 - $120,000</span>
+            <span class="job-status bg-[#EEF4FF] text-[#002C5C] font-bold px-3 py-2 w-[120px] rounded-md mb-2">Not Applied</span>
+            <p class="job-dsc text-[#323B49] mb-4">Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
            <div class="space-x-2"> 
-            <button class="btn btn-outline btn-success">interview</button>
-            <button class="btn btn-outline btn-error">Rejected</button>
+            <button class="interview-btn btn btn-outline btn-success">interview</button>
+            <button class="reject-btn btn btn-outline btn-error">Rejected</button>
            </div>
            <button class="btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
         </div>
+
+
         <!-- card 03 -->
         <div class="card bg-base-100 w-full p-6 shadow-sm  ">
-            <h4 class="text-[18px] font-bold text-[#002C5C]">Mobile First Corp</h4>
-            <p class="text-[#64748B]">React Native Developer</p>
-            <span class="text-[#64748B] py-4">Remote • Full-time • $130,000 - $175,000</span>
-            <span class=" bg-[#EEF4FF] text-[#002C5C] px-3 py-2 w-[113px] rounded-md mb-2">Not Applied</span>
-            <p class="text-[#323B49] mb-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            <h4 class="job-name text-[18px] font-bold text-[#002C5C]">DataViz Solutions</h4>
+            <p class="job-name-dsc text-[#64748B]">Data Visualization Specialist</p>
+            <span class="job-location text-[#64748B] py-4">Boston, MA • Full-time • $125,000 - $165,000</span>
+            <span class="job-status bg-[#EEF4FF] text-[#002C5C] font-bold px-3 py-2 w-[120px] rounded-md mb-2">Not Applied</span>
+            <p class="job-dsc text-[#323B49] mb-4">Transform complex data into compelling visualizations. Required skills: D3.js, React, and strong analytical thinking.</p>
            <div class="space-x-2"> 
-            <button class="btn btn-outline btn-success">interview</button>
-            <button class="btn btn-outline btn-error">Rejected</button>
+            <button class="interview-btn btn btn-outline btn-success">interview</button>
+            <button class="reject-btn btn btn-outline btn-error">Rejected</button>
            </div>
            <button class="btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
         </div>
+
+
         <!-- card 04 -->
         <div class="card bg-base-100 w-full p-6 shadow-sm  ">
-            <h4 class="text-[18px] font-bold text-[#002C5C]">Mobile First Corp</h4>
-            <p class="text-[#64748B]">React Native Developer</p>
-            <span class="text-[#64748B] py-4">Remote • Full-time • $130,000 - $175,000</span>
-            <span class=" bg-[#EEF4FF] text-[#002C5C] px-3 py-2 w-[113px] rounded-md mb-2">Not Applied</span>
-            <p class="text-[#323B49] mb-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
+            <h4 class="job-name text-[18px] font-bold text-[#002C5C]">CloudFirst Inc.</h4>
+            <p class="job-name-dsc text-[#64748B]">Backend Developer</p>
+            <span class="job-location text-[#64748B] py-4">Seattle, WA • Full-time • $140,000 - $190,000</span>
+            <span class="job-status bg-[#EEF4FF] text-[#002C5C] font-bold px-3 py-2 w-[120px] rounded-md mb-2">Not Applied</span>
+            <p class="job-dsc text-[#323B49] mb-4">Build cross-platform mobile applications using React Native. Work on products used by millions of users worldwide.</p>
            <div class="space-x-2"> 
-            <button class="btn btn-outline btn-success">interview</button>
-            <button class="btn btn-outline btn-error">Rejected</button>
+            <button class="interview-btn btn btn-outline btn-success">interview</button>
+            <button class="reject-btn btn btn-outline btn-error">Rejected</button>
            </div>
            <button class="btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
         </div>
     </div>
         
       </section>
+
+      <!-- filter section -->
+       <section id="filter-section" class="hidden">
+        <section id="no-card" class="card bg-base-100 w-full h-[400px] p-6 shadow-sm flex justify-center items-center mt-4 ">
+
+            <img class="w-[100px] h-[100px]" src="./jobs.png" alt="">
+            <h3 class="text-2xl font-semibold text-[#002C5C] mt-5">No jobs available</h3>
+            <p>Check back soon for new job opportunities</p>
+        </section>
+       </section>
+
+
+
+       <!-- No card section -->
+        
     </main>
+
 
     <script src="./script.js"></script>
   </body>
