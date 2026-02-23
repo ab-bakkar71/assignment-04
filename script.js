@@ -82,10 +82,46 @@ const exitingJob = interviewCount.find(jobItem=> jobItem.jobName== jobCardInfo.j
 if(!exitingJob){
     interviewCount.push(jobCardInfo)
 }
+
+rejectedCount = rejectedCount.filter(jobItem => jobItem.jobName!= jobCardInfo.jobName);
 filterRender();
 jobCalculate();
     }
+
+
+
+    // reject btn function
+    else if(event.target.classList.contains('reject-btn')){
+        const parentNode = event.target.parentNode.parentNode;
+
+    const jobName = parentNode.querySelector('.job-name').innerText;
+    const jobNameDsc = parentNode.querySelector('.job-name-dsc').innerText;
+    const jobLocation = parentNode.querySelector('.job-location').innerText;
+    const jobStatus = parentNode.querySelector('.job-status').innerText;
+    const jobDsc = parentNode.querySelector('.job-dsc').innerText;
     
+    // change status
+parentNode.querySelector('.job-status').innerText = 'Rejected';
+    
+
+const jobCardInfo= {
+    jobName,
+    jobNameDsc,
+    jobLocation,
+    jobStatus : 'Rejected',
+    jobDsc
+}
+
+const exitingJob = rejectedCount.find(jobItem=> jobItem.jobName== jobCardInfo.jobName)
+
+if(!exitingJob){
+    rejectedCount.push(jobCardInfo)
+}
+interviewCount = interviewCount.filter(jobItem => jobItem.jobName!= jobCardInfo.jobName);
+
+filterRenderRejected();
+jobCalculate();
+    }
 
 });
 
@@ -117,4 +153,27 @@ function filterRender(){
    
 }
 
+// reject filter add
+function filterRenderRejected(){
+    filterSection.innerHTML = '';
 
+    for(let rejected of rejectedCount){
+        console.log(rejected)
+        let div = document.createElement('div');
+        div.className = 'card bg-base-100 w-full p-6 shadow-sm mb-4'
+        div.innerHTML = ` <h4 class="text-[18px] font-bold text-[#002C5C]">${rejected.jobName}</h4>
+            <p class="text-[#64748B]">${rejected.jobNameDsc}</p>
+            <span class="text-[#64748B] py-4">${rejected.jobLocation}</span>
+            <span class=" bg-[#EEF4FF] text-[#002C5C] font-bold px-3 py-2 w-[113px] rounded-md mb-2">${rejected.jobStatus}</span>
+            <p class="text-[#323B49] mb-4">${rejected.jobDsc}</p>
+           <div class="space-x-2"> 
+            <button class="btn btn-outline btn-success">interview</button>
+            <button class="btn btn-outline btn-error">Rejected</button>
+           </div>
+           <button class="btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
+        `
+        filterSection.appendChild(div)
+    }
+
+   
+}
