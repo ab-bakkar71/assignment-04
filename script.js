@@ -14,13 +14,23 @@ const rejectedFilterBtn = document.getElementById("filter-btn-rejected");
 
 const cards = document.getElementById("all-card");
 
-
+// job calculate function
 function jobCalculate() {
-  const currentTotal = cards.children.length;
+  const currentTotal = cards.querySelectorAll(".card").length;
+  const InterviewCountNumber = interviewCount.length;
+  const rejectedCountNumber = rejectedCount.length;
+
+  // interview & reject btn card count
   total.innerText = currentTotal;
-  totalJob.innerText = currentTotal;
-  interview.innerText = interviewCount.length;
-  rejected.innerText = rejectedCount.length;
+  if (currentStatus == "filter-btn-interview") {
+    totalJob.innerText = `${InterviewCountNumber} of ${currentTotal}`;
+  } else if (currentStatus == "filter-btn-rejected") {
+    totalJob.innerText = `${rejectedCountNumber} of ${currentTotal}`;
+  } else {
+    totalJob.innerText = currentTotal;
+  }
+  interview.innerText = InterviewCountNumber;
+  rejected.innerText = rejectedCountNumber;
 }
 jobCalculate();
 
@@ -37,8 +47,6 @@ function toggleBtn(id) {
 
   const selected = document.getElementById(id);
   currentStatus = id;
- 
-
   selected.classList.remove("bg-white");
   selected.classList.add("bg-[#3B82F6]");
 
@@ -50,13 +58,15 @@ function toggleBtn(id) {
   } else if (id == "filter-btn-all") {
     cards.classList.remove("hidden");
     filterSection.classList.add("hidden");
-    noCardRender();
+    
   } else if (id == "filter-btn-rejected") {
     cards.classList.add("hidden");
     filterSection.classList.remove("hidden");
     filterRenderRejected();
     noCardRender();
   }
+
+  jobCalculate();
 }
 
 // main section Function
@@ -197,38 +207,47 @@ function filterRenderRejected() {
 // no card section
 const noCardSection = document.getElementById("no-card");
 function noCardRender() {
-  if (currentStatus.length ==0 && currentStatus == "filter-btn-all") {
+  if (interviewCount.length == 0 && currentStatus == "filter-btn-interview") 
+    {noCardSection.classList.remove("hidden");} 
+
+  else if (rejectedCount.length == 0 && currentStatus == "filter-btn-rejected") 
+  {
     noCardSection.classList.remove("hidden");
-  }
- else if (interviewCount.length == 0 && currentStatus == "filter-btn-interview") {
+  } 
+  
+  else if (cards.querySelectorAll(".card").length == 0 && currentStatus == "filter-btn-all") {
     noCardSection.classList.remove("hidden");
-  } else if (rejectedCount.length == 0 && currentStatus == "filter-btn-rejected") {
-    noCardSection.classList.remove("hidden");
-  } else {
+  } 
+  
+  else {
     noCardSection.classList.add("hidden");
   }
-};
+}
+
 
 // delete btn function
-document.addEventListener("click", function(event){
-  const deleteBtn = event.target.closest('.delete-btn');
-  if(deleteBtn){
-    const card = deleteBtn.closest('.card');
-    const jobName = card.querySelector('.job-name').innerText;
+document.addEventListener("click", function (event) {
+  const deleteBtn = event.target.closest(".delete-btn");
+  if (deleteBtn) {
+    const card = deleteBtn.closest(".card");
+    const jobName = card.querySelector(".job-name").innerText;
     card.remove();
     // interview থেকে remove করতে
     interviewCount = interviewCount.filter(
-      (jobItem) => jobItem.jobName !== jobCardInfo.jobName,);
-  
-  // reject থেকে remove করতে
-
-  rejectedCount = rejectedCount.filter(
-      (jobItem) => jobItem.jobName !== jobCardInfo.jobName,
+      (jobItem) => jobItem.jobName !== jobName,
     );
+
+    // reject থেকে remove করতে
+
+    rejectedCount = rejectedCount.filter(
+      (jobItem) => jobItem.jobName !== jobName,
+    );
+
+    // re-render filter view if active
+    if (currentStatus == "filter-btn-interview") filterRenderInterview();
+    if (currentStatus == "filter-btn-rejected") filterRenderRejected();
 
     jobCalculate();
     noCardRender();
-
   }
-
 });
