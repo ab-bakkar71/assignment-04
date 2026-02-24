@@ -13,11 +13,12 @@ const interviewFilterBtn = document.getElementById("filter-btn-interview");
 const rejectedFilterBtn = document.getElementById("filter-btn-rejected");
 
 const cards = document.getElementById("all-card");
-const allCard = cards.children.length;
+
 
 function jobCalculate() {
-  total.innerText = allCard;
-  totalJob.innerText = allCard;
+  const currentTotal = cards.children.length;
+  total.innerText = currentTotal;
+  totalJob.innerText = currentTotal;
   interview.innerText = interviewCount.length;
   rejected.innerText = rejectedCount.length;
 }
@@ -121,7 +122,6 @@ document.addEventListener("click", function (event) {
       jobStatus: "Rejected",
       jobDsc,
     };
-
     const exitingJob = rejectedCount.find(
       (jobItem) => jobItem.jobName == jobCardInfo.jobName,
     );
@@ -164,6 +164,7 @@ function filterRenderInterview() {
 <button class="interview-btn btn btn-outline btn-success">interview</button>
 <button class="reject-btn btn btn-outline btn-error">Rejected</button>
 </div>
+<button class="delete-btn btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
 `;
     filterSection.appendChild(div);
   }
@@ -187,6 +188,7 @@ function filterRenderRejected() {
 <button class="interview-btn btn btn-outline btn-success">interview</button>
 <button class="reject-btn btn btn-outline btn-error">Rejected</button>
 </div>
+<button class="delete-btn btn btn-circle btn-sm absolute top-6 right-6"><i class="fa-solid fa-trash-can"></i></button>
 `;
     filterSection.appendChild(div);
   }
@@ -195,8 +197,8 @@ function filterRenderRejected() {
 // no card section
 const noCardSection = document.getElementById("no-card");
 function noCardRender() {
-  if (currentStatus == "filter-btn-all") {
-    noCardSection.classList.add("hidden");
+  if (currentStatus.length ==0 && currentStatus == "filter-btn-all") {
+    noCardSection.classList.remove("hidden");
   }
  else if (interviewCount.length == 0 && currentStatus == "filter-btn-interview") {
     noCardSection.classList.remove("hidden");
@@ -206,3 +208,27 @@ function noCardRender() {
     noCardSection.classList.add("hidden");
   }
 };
+
+// delete btn function
+document.addEventListener("click", function(event){
+  const deleteBtn = event.target.closest('.delete-btn');
+  if(deleteBtn){
+    const card = deleteBtn.closest('.card');
+    const jobName = card.querySelector('.job-name').innerText;
+    card.remove();
+    // interview থেকে remove করতে
+    interviewCount = interviewCount.filter(
+      (jobItem) => jobItem.jobName !== jobCardInfo.jobName,);
+  
+  // reject থেকে remove করতে
+
+  rejectedCount = rejectedCount.filter(
+      (jobItem) => jobItem.jobName !== jobCardInfo.jobName,
+    );
+
+    jobCalculate();
+    noCardRender();
+
+  }
+
+});
