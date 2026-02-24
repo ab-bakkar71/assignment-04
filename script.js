@@ -58,7 +58,7 @@ function toggleBtn(id) {
   } else if (id == "filter-btn-all") {
     cards.classList.remove("hidden");
     filterSection.classList.add("hidden");
-    
+    noCardRender();
   } else if (id == "filter-btn-rejected") {
     cards.classList.add("hidden");
     filterSection.classList.remove("hidden");
@@ -91,7 +91,7 @@ document.addEventListener("click", function (event) {
       jobStatus: "Interview",
       jobDsc,
     };
-
+// check exiting Job on interview
     const exitingJob = interviewCount.find(
       (jobItem) => jobItem.jobName == jobCardInfo.jobName,
     );
@@ -132,6 +132,7 @@ document.addEventListener("click", function (event) {
       jobStatus: "Rejected",
       jobDsc,
     };
+    // check exiting Job on reject
     const exitingJob = rejectedCount.find(
       (jobItem) => jobItem.jobName == jobCardInfo.jobName,
     );
@@ -150,6 +151,8 @@ document.addEventListener("click", function (event) {
 
     jobCalculate();
     noCardRender();
+
+
   }
 });
 
@@ -167,7 +170,7 @@ function filterRenderInterview() {
 <h4 class="job-name text-[18px] font-bold text-[#4f5255]">${interviews.jobName}</h4>
 <p class="job-name-dsc text-[#64748B]">${interviews.jobNameDsc}</p>
 <span class="job-location text-[#64748B] py-4">${interviews.jobLocation}</span>
-<span class="job-status bg-[#EEF4FF] text-[#002C5C] font-bold px-3 py-2 w-[113px] rounded-md mb-2">${interviews.jobStatus}</span>
+<span class="job-status bg-green-100 text-green-700 font-bold px-3 py-2 w-[113px] rounded-md mb-2">${interviews.jobStatus}</span>
 <p class="job-dsc text-[#323B49] mb-4">${interviews.jobDsc}</p>
 
 <div class="space-x-2">
@@ -191,7 +194,7 @@ function filterRenderRejected() {
 <h4 class="job-name text-[18px] font-bold text-[#4f5255]">${rejectedItem.jobName}</h4>
 <p class="job-name-dsc text-[#64748B]">${rejectedItem.jobNameDsc}</p>
 <span class="job-location text-[#64748B] py-4">${rejectedItem.jobLocation}</span>
-<span class="job-status bg-[#EEF4FF] text-[#002C5C] font-bold px-3 py-2 w-[113px] rounded-md mb-2">${rejectedItem.jobStatus}</span>
+<span class="job-status bg-red-100 text-red-700 font-bold px-3 py-2 w-[113px] rounded-md mb-2">${rejectedItem.jobStatus}</span>
 <p class="job-dsc text-[#323B49] mb-4">${rejectedItem.jobDsc}</p>
 
 <div class="space-x-2">
@@ -228,7 +231,7 @@ function noCardRender() {
 // delete btn function
 document.addEventListener("click", function (event) {
   const deleteBtn = event.target.closest(".delete-btn");
-  if (deleteBtn) {
+  if (deleteBtn) { alert('Are you sure want to delete?')
     const card = deleteBtn.closest(".card");
     const jobName = card.querySelector(".job-name").innerText;
     card.remove();
