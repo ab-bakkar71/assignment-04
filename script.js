@@ -36,7 +36,7 @@ function toggleBtn(id) {
 
   const selected = document.getElementById(id);
   currentStatus = id;
-  console.log(currentStatus);
+ 
 
   selected.classList.remove("bg-white");
   selected.classList.add("bg-[#3B82F6]");
@@ -45,13 +45,16 @@ function toggleBtn(id) {
     cards.classList.add("hidden");
     filterSection.classList.remove("hidden");
     filterRenderInterview();
+    noCardRender();
   } else if (id == "filter-btn-all") {
     cards.classList.remove("hidden");
     filterSection.classList.add("hidden");
+    noCardRender();
   } else if (id == "filter-btn-rejected") {
     cards.classList.add("hidden");
     filterSection.classList.remove("hidden");
     filterRenderRejected();
+    noCardRender();
   }
 }
 
@@ -95,6 +98,7 @@ document.addEventListener("click", function (event) {
     }
 
     jobCalculate();
+    noCardRender();
   }
 
   // reject btn function
@@ -135,6 +139,7 @@ document.addEventListener("click", function (event) {
     }
 
     jobCalculate();
+    noCardRender();
   }
 });
 
@@ -186,3 +191,18 @@ function filterRenderRejected() {
     filterSection.appendChild(div);
   }
 }
+
+// no card section
+const noCardSection = document.getElementById("no-card");
+function noCardRender() {
+  if (currentStatus == "filter-btn-all") {
+    noCardSection.classList.add("hidden");
+  }
+ else if (interviewCount.length == 0 && currentStatus == "filter-btn-interview") {
+    noCardSection.classList.remove("hidden");
+  } else if (rejectedCount.length == 0 && currentStatus == "filter-btn-rejected") {
+    noCardSection.classList.remove("hidden");
+  } else {
+    noCardSection.classList.add("hidden");
+  }
+};
